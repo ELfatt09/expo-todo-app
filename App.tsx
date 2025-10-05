@@ -1,4 +1,5 @@
 import { NavigationContainer } from "@react-navigation/native";
+import { useEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { useFonts } from 'expo-font';
 import { Ionicons } from "@expo/vector-icons";
@@ -72,18 +73,10 @@ function MainTabs() {
 
 export default function App() {
 
-  const [fontsLoaded] = useFonts({ ...Ionicons.font });
-  console.log("Ionicons:", Ionicons.font);
-  
+  useFonts({ ...Ionicons.font });
+  useFonts(Ionicons.font);
 
-  console.log("Fonts loaded:", fontsLoaded);
-  if (!fontsLoaded) {
-    return (
-      <View>
-        <Text>Failed to load font</Text>
-      </View>
-    );
-  }
+
   return (
     <AuthProvider>
       <NavigationContainer>
