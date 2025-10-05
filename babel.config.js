@@ -1,10 +1,15 @@
 module.exports = function (api) {
   api.cache(true);
-  let plugins = [];
-
   return {
-    presets: [['babel-preset-expo', { jsxImportSource: 'nativewind' }], 'nativewind/babel'],
+    presets: [
+      ['babel-preset-expo', { jsxImportSource: 'nativewind' }],
+      'nativewind/babel',
+    ],
+    plugins: [
 
-    plugins,
+      // plugin lain kalau kamu pakai (module-resolver, dll)
+      'react-native-worklets/plugin',  // **gunakan plugin reanimated**
+      // jangan pakai ‘react-native-worklets/plugin’ supaya tidak duplikasi kelas
+    ],
   };
 };

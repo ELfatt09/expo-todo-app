@@ -3,28 +3,34 @@
     "name": "expo-todo-app",
     "slug": "expo-todo-app",
     "version": "1.0.0",
-
+    "scheme": "mytodoapp",
+    "platforms": [
+      "ios",
+      "android",
+      "web"
+    ],
     "web": {
       "favicon": "./assets/favicon.png"
     },
-
     "experiments": {
       "tsconfigPaths": true
     },
-
-    "plugins": [],
-
+    "plugins": [
+      "expo-web-browser",
+      "expo-asset",
+      "expo-font"
+    ],
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-
     "userInterfaceStyle": "light",
-
     "splash": {
       "image": "./assets/splash.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": ["**/*"],
+    "assetBundlePatterns": [
+      "**/*"
+    ],
     "ios": {
       "supportsTablet": true
     },
@@ -32,6 +38,12 @@
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
+      },
+      "package": "com.anonymous.expotodoapp"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "23d0166d-f058-425f-9018-fe69e8f1038b"
       }
     }
   }
