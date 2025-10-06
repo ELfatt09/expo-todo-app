@@ -16,6 +16,7 @@ WebBrowser.maybeCompleteAuthSession();
 
 type AuthContextType = {
   session: Session | null;
+  userData: any;
   handleSignUp: (email: string, password: string) => Promise<void>;
   handleSignIn: (email: string, password: string) => Promise<void>;
   handleGoogleSignIn: () => Promise<void>;
@@ -26,12 +27,13 @@ type AuthContextType = {
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
+  const [userData, setUserData] = useState<any>(null);
   const [loading, setLoading] = useState(false);
   const [session, setSession] = useState<Session | null>(null);
 
   const handleSignUp = async (email: string, password: string) => {
     setLoading(true);
-    const { error } = await supabase.auth.signUp({ email, password });
+    const { error } = await supabase.auth.signUp({ email, password});
     setLoading(false);
     if (error) alert(error.message);
     else alert("Check your email for verification");
@@ -115,8 +117,10 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     WebBrowser.maybeCompleteAuthSession();
 
     // Get initial session (if exists)
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({ data: { session }}) => {
       console.log("Initial session:", session);
+      console.log("Initial user data:", session?.user);
+      setUserData(session?.user.user_metadata || null);
       setSession(session);
     });
 
@@ -148,6 +152,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
         handleGoogleSignIn,
         handleSignOut,
         loading,
+        userData,
       }}
     >
       {children}

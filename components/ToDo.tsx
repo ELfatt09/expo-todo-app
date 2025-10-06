@@ -8,6 +8,7 @@ import { useFonts } from "expo-font";
 export default function App() {
   useFonts({ 'Ionicons': Ionicons.font });
   const session = useAuth();
+
   // 🟢 State untuk input teks (tempat user ngetik)
   const [task, setTask] = useState("");
 

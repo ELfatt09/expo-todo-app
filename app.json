@@ -1,9 +1,9 @@
 {
   "expo": {
-    "name": "expo-todo-app",
-    "slug": "expo-todo-app",
+    "name": "todone",
+    "slug": "todone",
     "version": "1.0.0",
-    "scheme": "mytodoapp",
+    "scheme": "todone",
     "platforms": [
       "ios",
       "android",
@@ -39,7 +39,7 @@
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.anonymous.expotodoapp"
+      "package": "com.tehdeveloper.Todone"
     },
     "extra": {
       "eas": {
