@@ -2,12 +2,11 @@ import React, { useState } from 'react'
 import { View, Text, TextInput, Button, TouchableOpacity, Pressable } from 'react-native'
 
 
-import { supabase } from "../lib/supabase";
 import { useAuth } from 'context/authContext';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function Auth() {
-      const [email, setEmail] = useState("");
+  const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [username, setUsername] = useState("");
   const [page, setPage] = useState("login");
@@ -25,20 +24,19 @@ export default function Auth() {
     <View className="flex-1 bg-white px-6 pt-20">
       {/* Title */}
       <Text className="text-4xl font-bold mb-16">
-        {page === "login" ? "Sign in to your" : "Create a new"}
-        {"\n"}account
+        {page === "login" ? "Masuk ke akun Anda" : "Buat akun baru"}
+        {"\n"}anda
       </Text>
 
       {/* Username Input */}
       {page === "signup" && (
         <TextInput
           className="border-b text-xl border-gray-300 mb-10 py-2"
-          placeholder="Username"
+          placeholder="Nama pengguna"
           value={username}
           onChangeText={setUsername}
         />
       )}
-
 
       {/* Email Input */}
       <TextInput
@@ -52,7 +50,7 @@ export default function Auth() {
       {/* Password Input */}
       <TextInput
         className="border-b text-xl border-gray-300 mb-16  py-2"
-        placeholder="Password"
+        placeholder="Kata sandi"
         secureTextEntry
         value={password}
         onChangeText={setPassword}
@@ -60,29 +58,29 @@ export default function Auth() {
 
       {/* Sign Up Button */}
       <TouchableOpacity onPress={page === "login" ? handleSignInPress : handleSignUpPress} className="mb-5 bg-black py-4 rounded-xl items-center">
-        <Text className="text-white text-base font-semibold ">{loading ? "Loading..." : page === "login" ? "Sign In" : "Sign Up"}</Text>
+        <Text className="text-white text-base font-semibold">{loading ? "Sedang..." : page === "login" ? "Masuk" : "Daftar"}</Text>
       </TouchableOpacity>
 
       {/* Footer */}
       <View className="flex-row justify-center mt-10 text-lg">
         {page === "login" ? (
           <>
-            <Text className="text-gray-700">Not yet have an account? </Text>
+            <Text className="text-gray-700">Belum punya akun? </Text>
             <TouchableOpacity onPress={() => setPage("signup")}>
-              <Text className="font-bold text-black">Sign Up</Text>
+              <Text className="font-bold text-black">Daftar</Text>
             </TouchableOpacity>
           </>
         ) : (
           <>
-            <Text className="text-gray-500">Already have an account? </Text>
+            <Text className="text-gray-500">Sudah punya akun? </Text>
             <TouchableOpacity onPress={() => setPage("login")}>
-              <Text className="font-bold text-black">Sign In</Text>
+              <Text className="font-bold text-black">Masuk</Text>
             </TouchableOpacity>
           </>
         )}
       </View>
       <View className="mt-16">
-        <Text className="text-center text-gray-500 mb-2">Or continue with:</Text>
+        <Text className="text-center text-gray-500 mb-2">Atau lanjutkan dengan:</Text>
               <GoogleSignIn />
       </View>
     </View>

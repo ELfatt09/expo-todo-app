@@ -7,7 +7,7 @@ import { useFonts } from "expo-font";
 
 export default function App() {
   useFonts({ 'Ionicons': Ionicons.font });
-  const session = useAuth();
+  const {session, userData} = useAuth();
 
   // 🟢 State untuk input teks (tempat user ngetik)
   const [task, setTask] = useState("");
@@ -55,7 +55,7 @@ export default function App() {
   fetchTodos();
 
   const channel = supabase
-    .channel("todos-changes")
+    .channel( userData?.id + "-todos-changes")
     .on(
       "postgres_changes",
       { event: "*", schema: "public", table: "todos" },
@@ -79,6 +79,7 @@ export default function App() {
   // 🟢 subscribe harus async
   const subscribeChannel = async () => {
     await channel.subscribe((status) => {
+      console.log("Channel subscribed: " + userData?.id + "-todos-changes");
       console.log("Channel status:", status);
     });
   };
@@ -142,3 +143,5 @@ export default function App() {
     </View>
   );
 }
+
+

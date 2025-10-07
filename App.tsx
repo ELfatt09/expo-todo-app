@@ -16,7 +16,7 @@ function Navigate() {
     <>
       {session && (
         <View className="sticky top-0 z-50 bg-white flex-row justify-between items-center px-4 py-3 border-b border-gray-200">
-        <Text className="text-lg font-bold">{userData.email}</Text>
+        <Text className="text-lg font-bold">{userData?.email}</Text>
           <TouchableOpacity className="flex flex-row  items-center" onPress={handleSignOut}>
           <Ionicons name="log-out-outline" size={32} color="red" />
         </TouchableOpacity>

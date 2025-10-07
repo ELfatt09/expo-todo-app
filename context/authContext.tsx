@@ -120,7 +120,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     supabase.auth.getSession().then(({ data: { session }}) => {
       console.log("Initial session:", session);
       console.log("Initial user data:", session?.user);
-      setUserData(session?.user.user_metadata || null);
+      setUserData(session?.user || null);
       setSession(session);
     });
 
